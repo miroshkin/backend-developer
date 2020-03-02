@@ -9,31 +9,30 @@ namespace BackendDevelopment
 {
     class Program
     {
+        static int x = 0;
+        static object locker = new object();
         static void Main(string[] args)
         {
-            Thread thread = new Thread(new ParameterizedThreadStart(Count));
-
-            thread.Start();
-
-            for (int i = 0; i < 9; i++)
+            for (int i = 0; i < 5; i++)
             {
-                Console.WriteLine("Main thread");
-                Console.WriteLine(i * i);
-                Thread.Sleep(300);
+                Thread thread = new Thread(Count);
+                thread.Name = "Thread " + i.ToString();
+                thread.Start();
             }
 
             Console.ReadLine();
-
         }
-
-        public static void Count(object x)
+        public static void Count()
         {
-            for (int i = 0; i < 9; i++)
+            lock (locker)
             {
-                var n = (int) x;
-                Console.WriteLine("Second thread");
-                Console.WriteLine(i * n);
-                Thread.Sleep(400);
+                x = 1;
+                for (int i = 1; i < 9; i++)
+                {
+                    Console.WriteLine("{0}: {1}", Thread.CurrentThread.Name, x);
+                    x++;
+                    Thread.Sleep(100);
+                }
             }
         }
     }
