@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoResetEventExample.cs" />
+    <Compile Include="MutexExample.cs" />
     <Compile Include="MonitorExample.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

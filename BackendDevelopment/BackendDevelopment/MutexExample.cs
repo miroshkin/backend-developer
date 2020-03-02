@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace BackendDevelopment
 {
-    class AutoResetEventExample
+    class MutexExample
     {
-        static AutoResetEvent waitHandler = new AutoResetEvent(true);
+        static Mutex mutexObj = new Mutex();
         static int x = 0;
 
-        public AutoResetEventExample (bool start)
+        public MutexExample (bool start)
         {
             Console.WriteLine(this.GetType().Name);
 
@@ -24,7 +24,7 @@ namespace BackendDevelopment
             for (int i = 0; i < 5; i++)
             {
                 Thread myThread = new Thread(Count);
-                myThread.Name = $"Thread {i.ToString()}";
+                myThread.Name = $"Thread {i}";
                 myThread.Start();
             }
 
@@ -32,7 +32,7 @@ namespace BackendDevelopment
         }
         public static void Count()
         {
-            waitHandler.WaitOne();
+            mutexObj.WaitOne();
             x = 1;
             for (int i = 1; i < 9; i++)
             {
@@ -40,7 +40,7 @@ namespace BackendDevelopment
                 x++;
                 Thread.Sleep(100);
             }
-            waitHandler.Set();
+            mutexObj.ReleaseMutex();
         }
     }
 }
