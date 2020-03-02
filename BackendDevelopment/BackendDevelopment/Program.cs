@@ -11,7 +11,7 @@ namespace BackendDevelopment
     {
         static void Main(string[] args)
         {
-            Thread thread = new Thread(new ThreadStart(Count));
+            Thread thread = new Thread(new ParameterizedThreadStart(Count));
 
             thread.Start();
 
@@ -26,12 +26,13 @@ namespace BackendDevelopment
 
         }
 
-        public static void Count()
+        public static void Count(object x)
         {
             for (int i = 0; i < 9; i++)
             {
+                var n = (int) x;
                 Console.WriteLine("Second thread");
-                Console.WriteLine(i * i);
+                Console.WriteLine(i * n);
                 Thread.Sleep(400);
             }
         }
