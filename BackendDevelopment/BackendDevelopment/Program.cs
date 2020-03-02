@@ -13,8 +13,11 @@ namespace BackendDevelopment
         {
             var example1 = new AutoResetEventExample(false);
             var example2 = new MonitorExample(false);
-            var example3 = new MutexExample(true);
+            var example3 = new MutexExample(false);
+            var example4 = new SemaphoreExample(true);
         }
 
     }
+
+   
 }
