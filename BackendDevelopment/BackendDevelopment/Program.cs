@@ -11,19 +11,29 @@ namespace BackendDevelopment
     {
         static void Main(string[] args)
         {
-            Thread thread = Thread.CurrentThread;
-            
+            Thread thread = new Thread(new ThreadStart(Count));
 
-            Console.WriteLine($"Thread name : {thread.Name}");
-            thread.Name = "TestThread";
+            thread.Start();
 
-            Console.WriteLine($"Thread name : {thread.Name}");
-            Console.WriteLine($"Thread is alive : {thread.IsAlive}");
-            Console.WriteLine($"Priority : {thread.Priority}");
-            Console.WriteLine($"Thread state : {thread.ThreadState}");
-            Console.WriteLine($"App domain : {Thread.GetDomain().FriendlyName}");
+            for (int i = 0; i < 9; i++)
+            {
+                Console.WriteLine("Main thread");
+                Console.WriteLine(i * i);
+                Thread.Sleep(300);
+            }
+
             Console.ReadLine();
 
+        }
+
+        public static void Count()
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                Console.WriteLine("Second thread");
+                Console.WriteLine(i * i);
+                Thread.Sleep(400);
+            }
         }
     }
 }
