@@ -11,8 +11,9 @@ namespace BackendDevelopment
     {
         static void Main(string[] args)
         {
-            var example1 = new AutoResetEventExample(true);
-            var example2 = new MonitorExample(true);
+            var example1 = new AutoResetEventExample(false);
+            var example2 = new MonitorExample(false);
+            var example3 = new MutexExample(true);
         }
 
     }
