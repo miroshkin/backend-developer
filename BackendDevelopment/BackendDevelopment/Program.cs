@@ -11,11 +11,15 @@ namespace BackendDevelopment
     {
         static void Main(string[] args)
         {
+            //Multithreading - sync objects
             var example1 = new AutoResetEventExample(false);
             var example2 = new MonitorExample(false);
             var example3 = new MutexExample(false);
             var example4 = new SemaphoreExample(false);
-            var example5 = new TimerExample(true);
+            var example5 = new TimerExample(false);
+            
+            //TPL Task Parallel Library
+            var example6 = new TPLExample(true);
         }
 
     }
