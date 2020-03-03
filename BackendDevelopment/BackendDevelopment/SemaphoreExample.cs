@@ -11,12 +11,13 @@ namespace BackendDevelopment
     {
         public SemaphoreExample(bool start)
         {
-            Console.WriteLine(this.GetType().Name);
 
             if (!start)
             {
                 return;
             }
+
+            Console.WriteLine(this.GetType().Name);
 
             for (int i = 1; i < 6; i++)
             {

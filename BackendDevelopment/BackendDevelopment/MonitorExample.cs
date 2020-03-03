@@ -13,12 +13,13 @@ namespace BackendDevelopment
         static object locker = new object();
         public MonitorExample (bool start)
         {
-            Console.WriteLine(this.GetType().Name);
 
             if (!start)
             {
                 return;
             }
+
+            Console.WriteLine(this.GetType().Name);
 
             for (int i = 0; i < 5; i++)
             {
