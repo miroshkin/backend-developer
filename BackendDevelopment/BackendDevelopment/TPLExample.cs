@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,8 @@ namespace BackendDevelopment
 
             PartOne();
             PartTwo();
+            PartThree();
+            
         }
 
         private void PartOne()
@@ -41,6 +44,8 @@ namespace BackendDevelopment
                 new Task(() => Console.WriteLine("third task"))
             };
 
+
+
             foreach (var task in taskList)
             {
                 task.Start();
@@ -50,6 +55,23 @@ namespace BackendDevelopment
             Task.WaitAll(taskList);
 
             Console.WriteLine("The end of main method");
+        }
+
+        private void PartThree()
+        {
+            Task <Money> task = new Task<Money>(() =>
+            {
+                return new Money(){Value = 1000000};
+            });
+
+            Console.WriteLine($"Give me back my {task.Result.Value}$");
+
+            task.Start();
+        }
+
+        class Money
+        {
+            public decimal Value { get; set; }
         }
     }
 }
